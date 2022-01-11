@@ -1,0 +1,22 @@
+body{
+    background-image: url("Kintore4.jpg");
+    background-size: cover;
+    color: black;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 40px;
+}
+
+.phrase{
+    margin-top: 100px;
+}
+.kingen{
+    font-size: 32px;
+}
+
+.phrase-canvas{
+    font-size: 24px;
+}

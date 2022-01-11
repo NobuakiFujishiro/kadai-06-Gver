@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../sample-2.css">
+ 
+    <title>Body Making Tips</title>
+</head>
+<body>
+    <h1> Body Making Tips</h1>
+    <div id="recordArea" style="display: block;">
+            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeYrK7rlfDZxzdPkOvEry-tyPUesPqQ8sHDLM4J9VEQzKchQw/formResponse" 
+            method="post"
+            target="hidden_iframe"
+            onsubmit="submitted=true;">
+                <h2>■体重記録フォーム</h2>
+                    <dl>
+                        <dt>体重（kg）：</dt>
+                        <dd ><input id="weight" type="number" class="box" name="entry.1235684819" value></dd>
+                        <dt>体脂肪率（%）：</dt>
+                        <dd ><input id="fat" type="number" class="box" name="entry.1475189179" value></dd>
+                    </dl>   
+                    
+                        <div class="calc-area">
+                            <button id="send" type="submit" name="button" style="width: 150px;">記録</button>
+                        </div>
+            </form>
+            <script type="text/javascript">
+                var submitted = false;
+              </script>
+              <iframe
+                name="hidden_iframe"
+                id="hidden_iframe"
+                style="display: none"
+                onload="if(submitted)  {window.location='thanks.html';}"
+              ></iframe>
+                        <!--  
+            <div id="output" style="overflow: auto; height: 300px; width: 725px;" >
+                            <table id="recordTable" border="1" style="background-color: white;" width = "700px">
+                                <tr>
+                                    <th class="tableTitle1">日時記録</th>
+                                    <th class="tableTitle" style="width: 300px;">日時</th>
+                                    <th class="tableTitle" style="width: 200px;">体重（kg）</th>
+                                    <th class="tableTitle" style="width: 200px;">体脂肪率（%）</th>
+                                    
+                                </tr>
+                            </table>
+
+                        </div>
+
+                        -->
+                        <!-- 
+                    <p>
+                        <button id="graph" style="width: 150px;">体重推移グラフを見る</button>
+                    </p> -->
+                    
+
+            
+        </div>
+        <!--  
+        <div id="graphArea" style="display: none;">
+            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYx_v4NpOEBvH-LF5f44dNCFnzvw6DiveGpSQGMZXcKSi4Z8mdlIdET9rIlztUSyT8HCP8uaoIC1Qk/pubchart?oid=875492732&amp;format=interactive"></iframe>
+        </div>
+        -->
+
+        <a href="../index.html">最初のページに戻る</a>
+</body>
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
+
+<!--** 以下Firebase **-->
+<!--  
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, set, onChildAdded, remove, onChildRemoved, serverTimestamp}
+        from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.1/firebase-database.min.js";
+    // import { doc, setDoc, Timestamp } from "firebase/firestore";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "",
+      authDomain: "weight-fb54b.firebaseapp.com",
+      projectId: "weight-fb54b",
+      storageBucket: "weight-fb54b.appspot.com",
+      messagingSenderId: "411134067254",
+      appId: "1:411134067254:web:fcfd4c34a0847d477cce97"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const dbRef = ref(db, "weight");
+    const output = document.getElementById("output");
+    const recordTable = document.getElementById("recordTable");
+    // const timestamp = serverTimestamp();
+    // const fbTimestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+    window.setTimeout(function () {
+    window.location.reload(); }, 30000);
+
+    $("#send").on("click", function(){
+        // window.location.reload
+        // 
+        // const date = Timestamp.now();
+        // const dateTime= new Date();
+        const record ={
+            weight: $("#weight").val(),
+            fat: $("#fat").val(),
+            timestamp:  $("#tableChild1").text()
+        };
+        new Date()
+        // console.log(record);
+        
+
+        const newPostRef = push(dbRef);
+        set(newPostRef, record);
+
+        // window.location.reload
+        output.scrollTo(0, output.scrollHeight);
+        return false;
+
+ 
+    });
+    
+    onChildAdded(dbRef, function(data){
+        
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth()+1;
+        const day = now.getDate();
+        const hour = now.getHours();
+        const min = now.getMinutes();
+        const sec = now.getSeconds();
+
+        const record = data.val();
+        
+        
+        const key = data.key;
+
+        
+
+
+        
+        let h = '<tr id="addTable" >';
+            h +='<th id="tableChild1" class ="';
+                h += key;
+                h += '">';
+                // h += now;
+
+                // /*
+                h += year;
+                h += '年';
+                h += month;
+                h += '月';
+                h += day;
+                h += '日';
+                // /*
+                h += hour;
+                h += '時';
+                h += min;
+                h += '分';
+                h += sec;
+                h += '秒';
+                // */
+
+                h += '</th>';
+                h += '<th class="tableChild2" class ="';
+                h += key;
+                h += '">';
+                h += record.timestamp;
+                h += '</th>';
+               
+                h +='<th class="tableChild3" class ="';
+                h += key;
+                h += '">';
+                h += record.weight;
+                h += '</th>';
+
+                h += '<th class="tableChild4" class ="';
+                h += key;
+                h += '">';
+                h += record.fat;
+                h += '</th>';
+
+
+
+                
+
+
+                h += '</tr>'
+        
+        recordTable.insertAdjacentHTML("beforeend", h);
+        /*
+        let h = '<div id="myScreen" >'
+                h +='<div id="myWeight" >';
+                h += '体重（kg）: '
+                h += record.weight;
+                h += '</div>';
+                h += '<div id="myFat" >';
+                h += '体脂肪率（%）: '
+                h += record.fat;
+                h += '</div>';
+                h += year;
+                h += '年';
+                h += month;
+                h += '月';
+                h += day;
+                h += '日';
+                h += hour;
+                h += '時';
+                h += min;
+                h += '分';
+            h += '</div>'
+            
+      
+
+        $("#output").append(h);
+     */
+        return false;
+    });
+-->
+
+<script>
+    $("#graph").on("click", function(){
+        const recordArea = document.getElementById("recordArea");
+        const graphArea = document.getElementById("graphArea");
+        recordArea.style.display="none";
+        graphArea.style.display="block";
+
+        return false;
+
+    });
+
+  </script>
+
+</html>

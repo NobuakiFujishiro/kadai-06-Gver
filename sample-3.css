@@ -1,0 +1,30 @@
+body{
+    background-image: url("Kintore5.jpg");
+    background-size: cover;
+    color: black;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 40px;
+}
+
+.chest{
+    display: flex;
+}
+.leg{
+    display: flex;
+}
+.video{
+    margin-left: 10px;
+}
+/* h2{ 
+    font-size: 32px;
+}
+#figure{
+text-align: center;
+}
+p{
+    font-size: 24px;
+}*/

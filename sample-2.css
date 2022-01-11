@@ -1,0 +1,71 @@
+body{
+    background-image: url("Kintore7.jpg");
+    background-size: cover;
+    color: black;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 40px;
+}
+
+h2{
+    font-size: 24px;
+}
+
+form dl dt {
+    width: 200px;
+    height: 40px;
+    padding: 10px 0;
+    line-height: 40px;
+    float: left;
+}
+form dl dd {
+    
+    padding: 10px 0;
+    margin: 0;
+}
+
+.tableTitle{
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.box {
+    box-sizing: border-box;
+    width: 150px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+}
+
+#myScreen{
+width: 600px;
+border: 1px solid;
+border-radius: 10px;
+
+background-color: white;
+margin-bottom: 20px;
+margin-top: 30px;
+}
+
+#send{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    /* margin-left: 80px; */
+}
+
+#output{
+    margin-bottom: 60px;
+}
+
+
+.tableTitle1{
+    display: none;
+}
+
+#tableChild1{
+    display: none;
+}

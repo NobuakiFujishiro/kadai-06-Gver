@@ -1,0 +1,27 @@
+body{
+    background-image: url("Kintore7.jpg");
+    background-size: cover;
+    color: black;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 40px;
+}
+p{
+    font-size: 24px;
+}
+
+#graphArea{
+ 
+    margin-bottom: 90px;
+}
+
+h4{
+    margin-bottom: 40px;
+}
+
+.page{
+    margin-bottom: 10px;
+}

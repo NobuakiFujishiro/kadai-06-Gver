@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../sample-1.css">
+<link rel="stylesheet" href="jquery-2.1.3.min.js">
+<title>Body Making Tips</title>
+</head>
+<body>
+
+    <h1> Body Making Tips</h1>
+    <p>このフォームを使い、算出されるカロリーの食事を日々摂取するだけで
+        <br>ダイエット（減量）を成功させることが可能。
+        <br> ※尚、減量しながら筋肉を大きくする（＝筋肥大する）ことは難しい。
+        <br>　筋肥大を目指す場合は増量しながら筋トレに励むことが望ましく、その場合
+        <br >　ここで算出される消費カロリー+300kcal位を摂取しながらトレーニングすると良い。</p>
+
+<!-- コンテンツ表示画面 -->
+
+<form id="diet_form">
+    <h2>（１）基礎情報入力・目標設定</h2>
+    <dl>
+        <dt>年齢(歳)：</dt>
+        <dd><input type="number" class="box" name="age"></dd>
+        <dt>身長(cm)：</dt>
+        <dd><input type="number" class="box" name="tall"></dd>
+        <dt>体重(kg)：</dt>
+        <dd><input type="number" class="box" name="weight"></dd>
+        <dt>目標体重(kg)：</dt>
+        <dd><input type="number" class="box" name="targetWeight"></dd>
+        <dt>目標達成期間(ヶ月)：</dt>
+        <dd><input type="number" class="box" name="due"></dd>
+        <div class="activeLevel-area">
+            <dt>日頃の運動量(指数)：</dt>
+            <dd><input type="number" class="box" name="activeLevel"></dd>
+            <ul class="activeLevel-ex">
+                <li>殆ど運動しない人：1.2</li>
+                <li>週2-3回運動する人：1.5</li>
+                <li>週4回以上ジム等で激しい運動をする人：1.8</li>
+            </ul>
+        </div>
+        <div class="calc-area">
+            <p><input type="button" class="calc-btn1" onclick="calc1(age.value, tall.value, weight.value, targetWeight.value, due.value, activeLevel.value);" value="カロリー計算(男性)"></p>
+            <p><input type="button" class="calc-btn2" onclick="calc2(age.value, tall.value, weight.value, targetWeight.value, due.value, activeLevel.value);" value="カロリー計算(女性)"></p>
+        </div>
+        <h2>（２）カロリー計算結果</h2>
+        <div class="activeLevel-area">
+            <dt>基礎代謝(kcal)：</dt>
+            <dd><input id="baseCal" class="box" type="text" readonly=""></dd>
+            <ul class="explanation1">
+                <li>生きているだけで何もしなくても消費するカロリー</li>
+                <li>１日の総摂取カロリーはこれを下回らないようにすることが望ましい</li>
+            </ul>
+        </div>
+        <div class="activeLevel-area">
+            <dt>消費カロリー(kcal)：</dt>
+            <dd><input id="maintenanceCal" class="box" type="text" readonly=""></dd>
+            <ul class="explanation1">
+                <li>先に入力した運動量をふまえ１日で消費するカロリー目安</li>
+                <li>つまり、このカロリーを摂取していれば体重は維持される（＝メンテナンスカロリー）</li>
+            </ul>
+        </div>
+        <div class="activeLevel-area">
+            <dt class="targetCal-title">目標摂取カロリー(kcal)：</dt>
+            <dd><input id="targetCal" class="box" type="text" readonly=""></dd>
+            <ul class="explanation2">
+                <li>先に入力した目標設定から逆算し、あなたが1日に摂取すべきカロリー</li>
+            
+            </ul>
+        </div>
+
+        <h2>（３）１日の食事のPFCバランス設定</h2>
+        <p class="explanation3">体重は先の目標摂取カロリーでコントロールできるが、キレイに痩せるには食事の内訳（PFCバランス）が重要。
+            <br>P: Protein=タンパク質。タンパク質1gあたり4kcal。
+            <br>F: Fat=脂質。脂質1gあたり9kcal。
+            <br>C: Carbohydrate=炭水化物。炭水化物1gあたり4kcal。尚、炭水化物は糖質と食物繊維から構成される。
+    
+        </p>
+        <p class="explanation4"> あなたが引き締まったカラダを手に入れる為のPFCバランスは以下の通り。</p>
+        
+        <dt class="pfc">タンパク質(g)：</dt>
+        <dd><input id="protein" class="box" type="text" readonly=""></dd>
+        <dt class="pfc">脂質(g)：</dt>
+        <dd><input id="fat" class="box" type="text" readonly=""></dd>
+        <dt class="pfc">炭水化物(g)：</dt>
+        <dd><input id="carbo" class="box" type="text" readonly=""></dd>
+    </dl>
+    <a href="../index.html">最初のページに戻る</a>
+</form>
+
+<p>
+    
+</p>  
+
+
+
+
+
+
+<!--/ コンテンツ表示画面 -->
+
+
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- JQuery -->
+
+
+<script>
+    function calc1(age, tall, weight, targetWeight, due, activeLevel) {
+        // 13.397×体重kg＋4.799×身長cm−5.677×年齢+88.362
+        const baseCal_value = document.getElementById('baseCal').value = Math.round(13.397*weight + 4.799*tall-5.677*age+88.362);
+        const maintenanceCal_value = document.getElementById('maintenanceCal').value = Math.round(baseCal_value * activeLevel);
+        const targetCal_value = document.getElementById('targetCal').value = Math.round(maintenanceCal_value-(7200*(weight-targetWeight))/(30*due));
+        const protein_value = document.getElementById('protein').value = Math.round(weight * 2);
+        const fat_value = document.getElementById('fat').value = Math.round(weight* 0.9);
+        const carbo_value = document.getElementById('carbo').value = Math.round((targetCal_value - (protein_value * 4) - (fat_value * 9)) / 4);
+    }
+
+    function calc2(age, tall, weight, targetWeight, due, activeLevel) {
+        // 13.397×体重kg＋4.799×身長cm−5.677×年齢+88.362
+        const baseCal_value = document.getElementById('baseCal').value = Math.round(9.247*weight + 3.098*tall-4.33*age+447.593);
+        const maintenanceCal_value = document.getElementById('maintenanceCal').value = Math.round(baseCal_value * activeLevel);
+        const targetCal_value = document.getElementById('targetCal').value = Math.round(maintenanceCal_value-(7200*(weight-targetWeight))/(30*due));
+        const protein_value = document.getElementById('protein').value = Math.round(weight * 1.6);
+        const fat_value = document.getElementById('fat').value = Math.round(weight* 0.9);
+        const carbo_value = document.getElementById('carbo').value = Math.round((targetCal_value - (protein_value * 4) - (fat_value * 9)) / 4);
+    }
+    
+    const screen = document.getElementById("diet_form");
+    $(".calc-btn1").on("click", function(){
+        scrollTo(0, screen.scrollHeight);
+    });
+
+    $(".calc-btn2").on("click", function(){
+        scrollTo(0, screen.scrollHeight);
+    });
+    
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../thanks.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Body Making Tips</h1>
+    <p>体重を記録しました。</p>
+    <!--  
+    <p>
+        <button id="graph" style="width: 150px;" onclick=displayGraph()>体重推移グラフを見る</button>
+    </p>
+    -->
+
+    <!-- <div id="graphArea" style="display: none;"> -->
+        <div id="graphArea">
+            <h4>体重(kg)と体脂肪率(%)の推移は以下グラフの通り↓↓</h4>
+        <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTYx_v4NpOEBvH-LF5f44dNCFnzvw6DiveGpSQGMZXcKSi4Z8mdlIdET9rIlztUSyT8HCP8uaoIC1Qk/pubchart?oid=875492732&amp;format=interactive"></iframe>
+        </div>
+        <!-- </div> -->
+    
+    <div class="page">
+    <a href="index-2.html">体重・体脂肪率入力ページに戻る</a>
+</div>
+<div class="page">
+    <a href="../index.html">最初のページに戻る</a>
+</div>
+</body>
+
+<!-- JQuery -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- JQuery -->
+
+<script>
+
+    function displayGraph(){
+        // const recordArea = document.getElementById("recordArea");
+        const graphArea = document.getElementById("graphArea");
+        // recordArea.style.display="none";
+        graphArea.style.display="block";
+
+        return false;
+
+    }
+    /*
+    $("#graph").on("click", function(){
+        const recordArea = document.getElementById("recordArea");
+        const graphArea = document.getElementById("graphArea");
+        recordArea.style.display="none";
+        graphArea.style.display="block";
+
+        return false;
+
+    });
+    */
+
+  </script>
+</html>

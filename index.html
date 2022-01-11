@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sample.css">
+    <link rel="stylesheet" href="jquery-2.1.3.min.js">
+    <title>Body Making Tips</title>
+</head>
+<body>
+    <h1> Body Making Tips</h1>
+    <p>このサイトでは理想のカラダを創る為の食事管理やトレーニングについて学べるほか、
+        <br>日々の体重を簡単に記録・管理することができる。このサイトを活用すれば
+        <br>パーソナルトレーナーに高いお金を支払わずとも自分でボディメイクができる。
+
+    </p>
+    <p>
+        <a href="./html/index-1.html" style="font-weight: bold; font-size: 24px" >（１）食事管理</a>
+        <br>ボディメイクに食事管理は不可欠。
+        <br>まずは上のリンクから目標体重・達成までの期間を設定し、摂取カロリー・PFCバランスを知ろう。
+    </p>   
+    <p>
+        <a href="./html/index-2.html" style="font-weight: bold; font-size: 24px">（２）体重記録</a>
+        <br>食事管理を継続しつつ、体重を記録していこう。
+        <br>慣れてきたら、実際の体重の増減を見ながら摂取カロリーを調整しよう。
+    </p>   
+    <p>
+        <a href="./html/index-3.html" style="font-weight: bold; font-size: 24px">（3）トレーニング</a>
+        <br>良いカラダを創るために鍛えるべき部位と効果的なトレーニングを知ろう。
+    </p>  
+
+    <div class="phrase">
+        <h2 class="kingen">～今日の筋言～</h2>
+        <div id="phrase-canvas">
+            
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = onLoad;
+        function onLoad(){
+            const messages=[
+                '『筋肉がNOと言ったら私はYES！と答える。』 by アーノルド・シュワルツェネッガー',
+                '『真のトレーニングとはやめたいと思った時から始まる。』by ロニー・コールマン ',
+                '『冗談じゃない、いますぐトレーニングだ！』by ジェレミー・ブエンディア',
+                '『走るんだったら倒れるまで走る。腕立て伏せだったら潰れるまでやる。』by マッスル北村',
+                '『じゃあ、ジムいく？？』 by 芳賀セブン',
+                '『おしゃべりなら後にしてくれ。パンプが冷めちまう。』 by アーノルド・シュワルツェネッガー',
+            ];
+
+            const messageNo = Math.floor(Math.random()*messages.length);
+            phrases = document.getElementById("phrase-canvas");
+            phrases.innerHTML = messages[messageNo];
+            phrases.style.color = "blue";
+            phrases.style.fontSize = "24px";
+        
+        }
+    </script>
+</body>
+</html>
